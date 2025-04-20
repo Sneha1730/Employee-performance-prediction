@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Performance Prediction</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+      <form action="/predict" method="post">
+        <h1>Employee Performance Prediction</h1>
+        <p>Enter the employee details below and click predict:</p>
+
+        <div class="input-box">
+          <label>Years at Company</label>
+          <input type="number" name="Years_At_Company" min="0" max="15" value="2" step="any" required><br>
+        </div>
+        
+        <div class="input-box">
+          <label>Monthly Salary</label>
+          <input type="number" name="Monthly_Salary" min="1000" max="100000" value="5000" step="any" required><br>
+        </div>
+
+        <div class="input-box">
+          <label>Overtime Hours</label>
+          <input type="number" name="Overtime_Hours" min="0" max="100" value="0" step="any" required><br>
+        </div>
+
+        <div class="input-box">
+          <label>Promotions</label>
+          <input type="number" name="Promotions" min="0" max="10" value="0" step="1" required><br>
+        </div>
+
+        <div class="input-box">
+          <label>Employee Satisfaction (0.0 - 5.0)</label>
+          <input type="number" name="Employee_Satisfaction_Score" min="0.0" max="5.0" value="2.0" step="any" required><br>
+        </div>
+
+        <button type="submit">Predict the performance score!</button><br>
+      </form>
+
+      {% if prediction is defined %}
+        <div class="result">
+          <p><strong>Prediction for the performance score:</strong> {{ prediction }}</p>
+        </div>
+      {% endif %}
+    </div>
+  
+</body>
+</html>
